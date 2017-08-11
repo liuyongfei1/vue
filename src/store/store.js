@@ -6,7 +6,9 @@ Vue.use(Vuex)
 // root state object.
 // each Vuex instance is just a single state tree.
 const state = {
-  count: 0
+  count: 0,
+  history: []
+
 }
 
 // mutations are operations that actually mutates the state.
@@ -17,9 +19,11 @@ const state = {
 const mutations = {
   increment (state) {
     state.count++
+    state.history.push('increment')
   },
   decrement (state) {
     state.count--
+    state.history.push('decrement')
   }
 }
 
@@ -45,7 +49,16 @@ const actions = {
 
 // getters are functions
 const getters = {
-  evenOrOdd: state => state.count % 2 === 0 ? 'even' : 'odd'
+  evenOrOdd: state => state.count % 2 === 0 ? 'even' : 'odd',
+  recentHistory: state => {
+    const limit = 5
+    const end = state.history.length
+    const begin = end - limit < 0 ? 0 : end - limit
+    return state.history
+    .slice(begin, end)
+    .toString()
+    .replace(/,/g, ', ')
+  }
 }
 
 // A Vuex instance is created by combining the state, mutations, actions,
