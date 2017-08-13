@@ -4,6 +4,8 @@ import Vuex from 'vuex'
 import * as getters from './getters'
 import * as actions from './actions'
 import * as mutations from './mutations'
+import cart from './modules/cart'
+import products from './modules/products'
 
 Vue.use(Vuex)
 
@@ -71,7 +73,11 @@ const store = new Vuex.Store({
   state,
   getters,
   actions,
-  mutations
+  mutations,
+  modules: {
+    cart,
+    products
+  }
 })
 
 if (module.hot) {

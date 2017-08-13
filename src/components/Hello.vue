@@ -3,6 +3,7 @@
     <ul>
       <li>
         <router-link v-bind:style="'color:#4db3ff'" to="counter">Counter</router-link>
+        <router-link v-bind:style="'color:#4db3ff'" to="shopping-cart">Shopping cart</router-link>
       </li>
     </ul>
   </div>

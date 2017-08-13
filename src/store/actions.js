@@ -1,5 +1,7 @@
 // actions are functions that cause side effects and can involve
 // asynchronous operations.
+import * as types from './mutation-types'
+
 export const increment = ({commit}) => commit('increment')
 export const decrement = ({commit}) => commit('decrement')
 export const incrementIfOdd = ({commit, state}) => {
@@ -12,6 +14,14 @@ export const incrementAsync = ({commit}) => {
     setTimeout(() => {
       commit('increment')
       resolve()
-    }, 5000)
+    }, 500)
   })
+}
+
+export const addToCart = ({ commit }, product) => {
+  if (product.inventory > 0) {
+    commit(types.ADD_TO_CART, {
+      id: product.id
+    })
+  }
 }
